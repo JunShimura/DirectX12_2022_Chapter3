@@ -1,6 +1,8 @@
 ﻿#include <Windows.h>
 #include<tchar.h>
 
+//#define DEF_TEST
+
 #ifdef _DEBUG
 #include <iostream>
 #endif
@@ -28,8 +30,8 @@ LRESULT WindowProcedure(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam) {
 	return DefWindowProc(hwnd, msg, wparam, lparam);
 }
 
-const unsigned int window_width = 1280;
-const unsigned int window_height = 720;
+const unsigned int window_width = 1920;
+const unsigned int window_height = 1080;
 
 #ifdef _DEBUG 
 int main()
@@ -37,6 +39,10 @@ int main()
 #else
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
+#endif
+	
+#ifdef DEF_TEST
+	cout << "defined DEF_TEST" << endl;
 #endif
 	DebugOutputFormatString("Show window test.");
 	HINSTANCE hInst = GetModuleHandle(nullptr);	//※追加
@@ -64,7 +70,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		w.hInstance,            // 呼び出しアプリケーションハンドル    
 		nullptr);               // 追加パラメーター
 		// ウィンドウ表示
-	ShowWindow(hwnd, SW_SHOW);
+		ShowWindow(hwnd, SW_SHOW);
 
 	MSG	msg = {};
 
