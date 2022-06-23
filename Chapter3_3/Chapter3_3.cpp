@@ -193,6 +193,17 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	ID3D12DescriptorHeap* rtvHeaps = nullptr;
 	result = _dev->CreateDescriptorHeap(&heapDesc, IID_PPV_ARGS(&rtvHeaps));
 	
+	ID3D12Resource* _backBuffer;
+	//D3D12_CPU_DESCRIPTOR_HANDLE handle = rtvHeaps->GetCPUDescriptorHandleForHeapStart();
+	//// #0
+	//result = _swapchain->GetBuffer(0, IID_PPV_ARGS(&_backBuffer));//バッファの位置のハンドルを取り出す
+	//_dev->CreateRenderTargetView(_backBuffer, nullptr, handle); //RTVをディスクリプターヒープに作成
+	//// ディスクリプタの先頭アドレスをRTVのサイズ分、後ろへずらず
+	//handle.ptr += _dev->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
+	//// #1
+	//result = _swapchain->GetBuffer(1, IID_PPV_ARGS(&_backBuffer));//バッファの位置のハンドルを取り出す
+	//_dev->CreateRenderTargetView(_backBuffer, nullptr, handle); //RTVをディスクリプターヒープに作成
+
 	DXGI_SWAP_CHAIN_DESC swcDesc = {};
 	result = _swapchain->GetDesc(&swcDesc);
 	std::vector<ID3D12Resource*> _backBuffers(swcDesc.BufferCount);
@@ -203,7 +214,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 		// ディスクリプタの先頭アドレスをRTVのサイズ分、後ろへずらず
 		handle.ptr += _dev->GetDescriptorHandleIncrementSize(D3D12_DESCRIPTOR_HEAP_TYPE_RTV);
 	}
-	
 	//
 
   	ShowWindow(hwnd, SW_SHOW);
