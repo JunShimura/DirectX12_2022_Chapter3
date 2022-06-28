@@ -102,12 +102,12 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 #ifdef _DEBUG    //デバッグレイヤーをオンに
 	EnableDebugLayer();
 #endif
-		//
+	//
 
 
-	//Chapter3_4 ←Chapter3_2_2 
-	// DirectX12の導入
-	//  1.IDXGIFactory6を生成
+//Chapter3_4 ←Chapter3_2_2 
+// DirectX12の導入
+//  1.IDXGIFactory6を生成
 	HRESULT result = S_OK;
 	if (FAILED(CreateDXGIFactory2(DXGI_CREATE_FACTORY_DEBUG, IID_PPV_ARGS(&_dxgiFactory)))) {
 		if (FAILED(CreateDXGIFactory2(0, IID_PPV_ARGS(&_dxgiFactory)))) {
